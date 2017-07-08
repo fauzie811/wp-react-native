@@ -19,7 +19,7 @@ class AuthorList extends Component {
         data={authorStore.itemsArray}
         renderItem={({ item }) => <AuthorListItem item={item} />}
         keyExtractor={item => item.id}
-        ItemSeparatorComponent={() => <Divider style={{ height: 1, marginLeft: 56 }} />}
+        ItemSeparatorComponent={() => <Divider style={{ height: 1, marginLeft: 70 }} />}
         refreshing={authorStore.loading}
         onRefresh={() => fetchAuthors()}
       />

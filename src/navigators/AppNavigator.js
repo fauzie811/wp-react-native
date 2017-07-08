@@ -13,6 +13,7 @@ const AppNavigator = StackNavigator({
       backgroundColor: config.COLOR_PRIMARY,
     },
     headerTintColor: 'white',
+    headerBackTitle: null,
   },
 });
 

@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, Platform } from 'react-native';
 import Collapsible from 'react-native-collapsible';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import Touchable from './common/Touchable';
 import Divider from './common/Divider';
-import { BodyTextMedium } from './common/Text';
+import { SubheadingText } from './common/Text';
 
 const styles = {
   container: {
     flexDirection: 'row',
-    height: 48,
+    height: Platform.OS === 'android' ? 48 : 44,
     alignItems: 'center',
-    paddingHorizontal: 12
+    paddingHorizontal: 16
   },
   icon: {
-    marginRight: 12,
+    marginRight: 16,
   },
   childrenContainer: {
     backgroundColor: 'rgba(0,0,0,0.05)',
@@ -27,8 +27,15 @@ class CategoryListItem extends Component {
 
   renderDropdown = () => (
     <Touchable onPress={() => this.setState({ expanded: !this.state.expanded })}>
-      <View style={{ padding: 12, alignItems: 'center', justifyContent: 'center' }}>
-        <Icon size={24} color="rgba(0,0,0,0.54)" name={this.state.expanded ? 'chevron-up' : 'chevron-down'} />
+      <View 
+        style={{ 
+          flex: 1, 
+          paddingHorizontal: 12, 
+          alignItems: 'center', 
+          justifyContent: 'center' 
+        }}
+      >
+        <Icon size={18} color="rgba(0,0,0,0.54)" name={this.state.expanded ? 'chevron-up' : 'chevron-down'} />
       </View>
     </Touchable>
   )
@@ -40,7 +47,7 @@ class CategoryListItem extends Component {
       <Touchable onPress={onPress}>
         <View style={styles.container}>
           <Icon size={18} style={styles.icon} color="rgba(0,0,0,0.54)" name="tag" />
-          <BodyTextMedium>{item.name}</BodyTextMedium>
+          <SubheadingText>{item.name}</SubheadingText>
         </View>
       </Touchable>
     );
@@ -62,7 +69,7 @@ class CategoryListItem extends Component {
     return (
       <View>
         {this.renderItem()}
-        <Divider style={{ height: 1 }} />
+        <Divider style={{ height: 1, marginLeft: 50 }} />
         <Collapsible
           style={styles.childrenContainer}
           collapsed={!this.state.expanded}

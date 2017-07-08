@@ -903,7 +903,7 @@ base64-js@1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/base64-js/-/base64-js-1.1.2.tgz#d6400cac1c4c660976d90d07a04351d89395f5e8"
 
-base64-js@^1.1.2:
+base64-js@^1.0.2, base64-js@^1.1.2:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/base64-js/-/base64-js-1.2.1.tgz#a91947da1f4a516ea38e5b4ec0ec3773675e0886"
 
@@ -1008,6 +1008,14 @@ bser@^2.0.0:
   resolved "https://registry.yarnpkg.com/bser/-/bser-2.0.0.tgz#9ac78d3ed5d915804fd87acb158bc797147a1719"
   dependencies:
     node-int64 "^0.4.0"
+
+buffer@^4.5.1:
+  version "4.9.1"
+  resolved "https://registry.yarnpkg.com/buffer/-/buffer-4.9.1.tgz#6d1bb601b07a4efced97094132093027c95bc298"
+  dependencies:
+    base64-js "^1.0.2"
+    ieee754 "^1.1.4"
+    isarray "^1.0.0"
 
 builtin-modules@^1.0.0, builtin-modules@^1.1.1:
   version "1.1.1"
@@ -1426,9 +1434,37 @@ doctrine@^2.0.0:
     esutils "^2.0.2"
     isarray "^1.0.0"
 
+dom-serializer@0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/dom-serializer/-/dom-serializer-0.1.0.tgz#073c697546ce0780ce23be4a28e293e40bc30c82"
+  dependencies:
+    domelementtype "~1.1.1"
+    entities "~1.1.1"
+
 dom-walk@^0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/dom-walk/-/dom-walk-0.1.1.tgz#672226dc74c8f799ad35307df936aba11acd6018"
+
+domelementtype@1, domelementtype@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/domelementtype/-/domelementtype-1.3.0.tgz#b17aed82e8ab59e52dd9c19b1756e0fc187204c2"
+
+domelementtype@~1.1.1:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/domelementtype/-/domelementtype-1.1.3.tgz#bd28773e2642881aec51544924299c5cd822185b"
+
+domhandler@^2.3.0:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/domhandler/-/domhandler-2.4.1.tgz#892e47000a99be55bbf3774ffea0561d8879c259"
+  dependencies:
+    domelementtype "1"
+
+domutils@^1.5.1:
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/domutils/-/domutils-1.6.2.tgz#1958cc0b4c9426e9ed367fb1c8e854891b0fa3ff"
+  dependencies:
+    dom-serializer "0"
+    domelementtype "1"
 
 duplexer2@0.0.2:
   version "0.0.2"
@@ -1446,11 +1482,19 @@ ee-first@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
 
+emitter-component@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/emitter-component/-/emitter-component-1.1.1.tgz#065e2dbed6959bf470679edabeaf7981d1003ab6"
+
 encoding@^0.1.11:
   version "0.1.12"
   resolved "https://registry.yarnpkg.com/encoding/-/encoding-0.1.12.tgz#538b66f3ee62cd1ab51ec323829d1f9480c74beb"
   dependencies:
     iconv-lite "~0.4.13"
+
+entities@^1.1.1, entities@~1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/entities/-/entities-1.1.1.tgz#6e5c2d0a5621b5dadaecef80b90edfb5cd7772f0"
 
 "errno@>=0.1.1 <0.2.0-0":
   version "0.1.4"
@@ -1730,6 +1774,14 @@ event-emitter@~0.3.5:
 event-target-shim@^1.0.5:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/event-target-shim/-/event-target-shim-1.1.1.tgz#a86e5ee6bdaa16054475da797ccddf0c55698491"
+
+eventemitter2@^1.0.0:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/eventemitter2/-/eventemitter2-1.0.5.tgz#f983610517b1737c0b9dc643beca93893c04df18"
+
+events@^1.1.0:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/events/-/events-1.1.1.tgz#9ebdb7635ad099c70dcc4c2a1f5004288e8bd924"
 
 exec-sh@^0.2.0:
   version "0.2.0"
@@ -2159,9 +2211,32 @@ html-encoding-sniffer@^1.0.1:
   dependencies:
     whatwg-encoding "^1.0.1"
 
-html-entities@^1.2.1:
+html-entities@^1.2.0, html-entities@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/html-entities/-/html-entities-1.2.1.tgz#0df29351f0721163515dfb9e5543e5f6eed5162f"
+
+htmlparser2-without-node-native@^3.9.0:
+  version "3.9.0"
+  resolved "https://registry.yarnpkg.com/htmlparser2-without-node-native/-/htmlparser2-without-node-native-3.9.0.tgz#7594357386e43be3d9ec4264df9d7ec60f81a7df"
+  dependencies:
+    domelementtype "^1.3.0"
+    domhandler "^2.3.0"
+    domutils "^1.5.1"
+    entities "^1.1.1"
+    eventemitter2 "^1.0.0"
+    inherits "^2.0.1"
+    readable-stream "^2.0.2"
+
+htmlparser2@^3.9.0:
+  version "3.9.2"
+  resolved "https://registry.yarnpkg.com/htmlparser2/-/htmlparser2-3.9.2.tgz#1bdf87acca0f3f9e53fa4fcceb0f4b4cbb00b338"
+  dependencies:
+    domelementtype "^1.3.0"
+    domhandler "^2.3.0"
+    domutils "^1.5.1"
+    entities "^1.1.1"
+    inherits "^2.0.1"
+    readable-stream "^2.0.2"
 
 http-errors@~1.3.1:
   version "1.3.1"
@@ -2190,6 +2265,10 @@ iconv-lite@~0.4.13:
   version "0.4.18"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.18.tgz#23d8656b16aae6742ac29732ea8f0336a4789cf2"
 
+ieee754@^1.1.4:
+  version "1.1.8"
+  resolved "https://registry.yarnpkg.com/ieee754/-/ieee754-1.1.8.tgz#be33d40ac10ef1926701f6f08a2d86fbfd1ad3e4"
+
 ignore@^3.2.0:
   version "3.3.3"
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-3.3.3.tgz#432352e57accd87ab3110e82d3fea0e47812156d"
@@ -2209,7 +2288,7 @@ inflight@^1.0.4:
     once "^1.3.0"
     wrappy "1"
 
-inherits@2, inherits@^2.0.3, inherits@~2.0.1, inherits@~2.0.3:
+inherits@2, inherits@^2.0.1, inherits@^2.0.3, inherits@~2.0.1, inherits@~2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.3.tgz#633c2c83e3da42a502f52466022480f4208261de"
 
@@ -3602,6 +3681,27 @@ react-native-fs@^2.0.1-rc.2:
     base-64 "^0.1.0"
     utf8 "^2.1.1"
 
+react-native-htmlview@^0.10.0:
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/react-native-htmlview/-/react-native-htmlview-0.10.0.tgz#bfe3208e1db937e24e9cf4706009d94c18be1f0e"
+  dependencies:
+    entities "^1.1.1"
+    htmlparser2-without-node-native "^3.9.0"
+
+react-native-parallax-scroll-view@^0.19.0:
+  version "0.19.0"
+  resolved "https://registry.yarnpkg.com/react-native-parallax-scroll-view/-/react-native-parallax-scroll-view-0.19.0.tgz#23b9af1f13249a610f4641e2582a58997df7d80a"
+
+"react-native-render-html@https://github.com/fauzie811/react-native-render-html":
+  version "2.0.0"
+  resolved "https://github.com/fauzie811/react-native-render-html#84a4410475b71c3251a0604ae5a264607fb1641e"
+  dependencies:
+    buffer "^4.5.1"
+    events "^1.1.0"
+    html-entities "^1.2.0"
+    htmlparser2 "^3.9.0"
+    stream "0.0.2"
+
 react-native-responsive-image@^1.2.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/react-native-responsive-image/-/react-native-responsive-image-1.3.0.tgz#2b6adadfa6d065ab9ee76f27d9abd0ccbbab5301"
@@ -3782,7 +3882,7 @@ read-pkg@^1.0.0:
     normalize-package-data "^2.3.2"
     path-type "^1.0.0"
 
-readable-stream@^2.0.1, readable-stream@^2.0.6, readable-stream@^2.1.5, readable-stream@^2.2.2:
+readable-stream@^2.0.1, readable-stream@^2.0.2, readable-stream@^2.0.6, readable-stream@^2.1.5, readable-stream@^2.2.2:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-2.3.2.tgz#5a04df05e4f57fe3f0dc68fdd11dc5c97c7e6f4d"
   dependencies:
@@ -4228,6 +4328,12 @@ stream-counter@~0.2.0:
   resolved "https://registry.yarnpkg.com/stream-counter/-/stream-counter-0.2.0.tgz#ded266556319c8b0e222812b9cf3b26fa7d947de"
   dependencies:
     readable-stream "~1.1.8"
+
+stream@0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/stream/-/stream-0.0.2.tgz#7f5363f057f6592c5595f00bc80a27f5cec1f0ef"
+  dependencies:
+    emitter-component "^1.1.1"
 
 string-length@^1.0.1:
   version "1.0.1"

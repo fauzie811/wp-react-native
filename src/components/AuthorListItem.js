@@ -1,21 +1,22 @@
 import React from 'react';
-import { View, Image } from 'react-native';
+import { View, Image, Platform } from 'react-native';
 
 import Touchable from './common/Touchable';
-import { BodyTextMedium } from './common/Text';
+import { SubheadingText } from './common/Text';
 
 const styles = {
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 12,
+    height: Platform.OS === 'android' ? 56 : 54,
+    paddingHorizontal: 16,
   },
   avatar: {
     backgroundColor: '#e5e5e5',
-    borderRadius: 16,
-    height: 32,
-    width: 32,
-    marginRight: 12,
+    borderRadius: 20,
+    height: 40,
+    width: 40,
+    marginRight: 16,
   },
 };
 
@@ -23,7 +24,7 @@ export default ({ item, onPress }) => (
   <Touchable onPress={onPress}>
     <View style={styles.container}>
       <Image style={styles.avatar} source={{ uri: item.avatar_urls['96'] }} />
-      <BodyTextMedium>{item.name}</BodyTextMedium>
+      <SubheadingText>{item.name}</SubheadingText>
     </View>
   </Touchable>
 );

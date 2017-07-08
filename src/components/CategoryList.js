@@ -12,28 +12,20 @@ class CategoryList extends Component {
     fetchCategories();
   }
 
-  renderChildren = (parent) => {
+  renderChildren = (parentId) => {
     return categoryStore.items
-      .filter(item => item.parent === parent.id)
+      .filter(item => item.parent === parentId)
       .map(item => {
         return (
           <CategoryListItem key={item.id} item={item}>
-            {this.renderChildren(item)}
+            {this.renderChildren(item.id)}
           </CategoryListItem>
         );
       });
   }
 
   renderItems = () => {
-    return categoryStore.items
-      .filter(item => item.parent === 0)
-      .map(item => {
-        return (
-          <CategoryListItem key={item.id} item={item}>
-            {this.renderChildren(item)}
-          </CategoryListItem>
-        );
-      });
+    return this.renderChildren(0);
   }
 
   render() {

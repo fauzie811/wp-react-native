@@ -5,7 +5,7 @@ const colorTextPrimary = 'rgba(0,0,0,0.87)';
 const colorTextSecondary = 'rgba(0,0,0,0.54)';
 const colorTextDisabled = 'rgba(0,0,0,0.38)';
 
-const styles = {
+export const styles = {
   bodyText: {
     fontSize: 14,
   },

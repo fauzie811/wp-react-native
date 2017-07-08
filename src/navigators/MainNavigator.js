@@ -6,12 +6,19 @@ import CategoriesScreen from '../screens/CategoriesScreen';
 import AuthorsScreen from '../screens/AuthorsScreen';
 import SavedScreen from '../screens/SavedScreens';
 
-const MainNavigator = TabNavigator({
+const tabsWithAuthors = {
   Home: { screen: HomeScreen },
   Categories: { screen: CategoriesScreen },
   Authors: { screen: AuthorsScreen },
   Saved: { screen: SavedScreen },
-}, {
+};
+const tabsWithoutAuthors = {
+  Home: { screen: HomeScreen },
+  Categories: { screen: CategoriesScreen },
+  Saved: { screen: SavedScreen },
+};
+
+const MainNavigator = TabNavigator(config.SHOW_AUTHORS ? tabsWithAuthors : tabsWithoutAuthors, {
   tabBarComponent: TabBarBottom,
   tabBarPosition: 'bottom',
   animationEnabled: false,
@@ -25,7 +32,7 @@ const MainNavigator = TabNavigator({
     }
   },
   navigationOptions: {
-    title: 'WP React-Native'
+    title: 'WP React-Native',
   }
 });
 

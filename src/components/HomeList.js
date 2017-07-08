@@ -32,11 +32,22 @@ class HomeList extends Component {
     return <ListItemLoading />;
   }
 
+  renderItem = ({ item }) => {
+    return (
+      <PostListItem
+        item={item}
+        onPress={() => {
+          this.props.navigation.navigate('Detail', { item });
+        }}
+      />
+    );
+  }
+
   render() {
     return (
       <FlatList 
         data={postStore.itemsArray}
-        renderItem={({ item }) => <PostListItem item={item} />}
+        renderItem={this.renderItem}
         keyExtractor={item => item.id}
         ItemSeparatorComponent={() => <Divider style={{ height: 1 }} />}
         refreshing={postStore.refreshing}

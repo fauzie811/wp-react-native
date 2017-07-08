@@ -5,4 +5,6 @@ export default
 
   COLOR_PRIMARY: '#3498db',
   COLOR_PRIMARY_DARK: '#2980b9',
+
+  SHOW_AUTHORS: true,
 };
