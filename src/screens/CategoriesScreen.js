@@ -1,5 +1,6 @@
 import React from 'react';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { Platform } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import Container from '../components/common/Container';
 import CategoryList from '../components/CategoryList';
@@ -12,8 +13,11 @@ const CategoriesScreen = ({ navigation }) => (
 
 CategoriesScreen.navigationOptions = {
   tabBarLabel: 'Categories',
-  tabBarIcon: ({ tintColor }) =>
-    <Icon size={24} color={tintColor} name="view-sequential" />,
+  tabBarIcon: ({ focused, tintColor }) => (
+    Platform.OS === 'android' ?
+    <Icon size={24} color={tintColor} name="md-apps" /> :
+    <Icon size={25} color={tintColor} name={focused ? 'ios-apps' : 'ios-apps-outline'} />
+  ),
 };
 
 export default CategoriesScreen;

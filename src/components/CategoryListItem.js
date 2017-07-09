@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { View, Platform } from 'react-native';
-import Collapsible from 'react-native-collapsible';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
+import Collapsible from './common/Collapsible';
 import Touchable from './common/Touchable';
 import Divider from './common/Divider';
 import { SubheadingText } from './common/Text';
@@ -46,7 +46,7 @@ class CategoryListItem extends Component {
     return (
       <Touchable onPress={onPress}>
         <View style={styles.container}>
-          <Icon size={18} style={styles.icon} color="rgba(0,0,0,0.54)" name="tag" />
+          <Icon size={18} style={styles.icon} color="rgba(0,0,0,0.54)" name="tag-text-outline" />
           <SubheadingText>{item.name}</SubheadingText>
         </View>
       </Touchable>

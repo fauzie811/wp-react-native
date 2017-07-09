@@ -1,4 +1,4 @@
-import { observable, computed } from 'mobx';
+import { observable } from 'mobx';
 
 class PostStore {
   @observable loading;
@@ -7,14 +7,17 @@ class PostStore {
   @observable items;
 
   constructor() {
-    this.loading = true;
-    this.refreshing = true;
-    this.page = 1;
-    this.items = [];
+    this.loading = { all: true };
+    this.refreshing = { all: true, slider: true };
+    this.page = { all: 1 };
+    this.items = {
+      all: [],
+      slider: [],
+    };
   }
 
-  @computed get itemsArray() {
-    return this.items.peek();
+  getItemsArray(key = 'all') {
+    return this.items[key].peek();
   }
 }
 

@@ -7,24 +7,18 @@
 		"test": "jest"
 	},
 	"dependencies": {
-		"axios": "^0.16.2",
 		"html-entities": "^1.2.1",
-		"lodash": "^4.17.4",
 		"mobx": "^3.1.16",
 		"mobx-react": "^4.2.1",
 		"moment": "^2.18.1",
 		"react": "16.0.0-alpha.12",
 		"react-native": "0.45.1",
 		"react-native-cacheable-image": "^1.5.1",
-		"react-native-collapsible": "^0.8.0",
-		"react-native-htmlview": "^0.10.0",
 		"react-native-parallax-scroll-view": "^0.19.0",
 		"react-native-render-html": "https://github.com/fauzie811/react-native-render-html",
+		"react-native-swiper": "^1.5.4",
 		"react-native-vector-icons": "^4.2.0",
-		"react-navigation": "^1.0.0-beta.11",
-		"react-redux": "^5.0.5",
-		"redux": "^3.7.0",
-		"redux-thunk": "^2.2.0"
+		"react-navigation": "^1.0.0-beta.11"
 	},
 	"devDependencies": {
 		"babel-jest": "20.0.3",

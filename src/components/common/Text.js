@@ -5,6 +5,10 @@ const colorTextPrimary = 'rgba(0,0,0,0.87)';
 const colorTextSecondary = 'rgba(0,0,0,0.54)';
 const colorTextDisabled = 'rgba(0,0,0,0.38)';
 
+const colorTextPrimaryInverted = '#ffffff';
+const colorTextSecondaryInverted = 'rgba(255,255,255,0.7)';
+const colorTextDisabledInverted = 'rgba(255,255,255,0.5)';
+
 export const styles = {
   bodyText: {
     fontSize: 14,
@@ -27,6 +31,14 @@ export const styles = {
 
 const getColor = (props) => {
   if (props.color) return props.color;
+
+  if (props.inverted) {
+    if (props.secondary) return colorTextSecondaryInverted;
+    if (props.disabled) return colorTextDisabledInverted;
+
+    return colorTextPrimaryInverted;
+  }
+
   if (props.secondary) return colorTextSecondary;
   if (props.disabled) return colorTextDisabled;
 
