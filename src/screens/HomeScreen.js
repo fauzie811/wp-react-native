@@ -61,7 +61,7 @@ class HomeScreen extends Component {
   };
 
   componentWillMount() {
-    fetchPosts('slider', false, { per_page: 6 });
+    fetchPosts('slider', false, config.SLIDER_QUERY);
   }
 
   renderSlider = () => {

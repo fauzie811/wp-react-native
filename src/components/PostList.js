@@ -18,19 +18,22 @@ const styles = {
 class PostList extends Component {
   componentWillMount() {
     this.key = this.props.storeKey || 'all';
-    fetchPosts();
+    this.qs = this.props.queryString || {};
+    this._fetchPosts();
   }
 
+  _fetchPosts = () => fetchPosts(this.key, true, this.qs);
+
   handleRefresh = () => {
-    postStore.page[this.key] = 1;
-    fetchPosts();
+    postStore.setPage(this.key, 1);
+    this._fetchPosts();
   }
 
   handleLoadMore = () => {
     if (postStore.loading[this.key]) return;
 
-    postStore.page[this.key]++;
-    fetchPosts();
+    postStore.setPage(this.key, postStore.page[this.key] + 1);
+    this._fetchPosts();
   }
 
   renderFooter = () => {

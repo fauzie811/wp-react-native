@@ -5,13 +5,13 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import Container from '../components/common/Container';
 import CategoryList from '../components/CategoryList';
 
-const CategoriesScreen = ({ navigation }) => (
+const CategoryListScreen = ({ navigation }) => (
   <Container>
-    <CategoryList />
+    <CategoryList navigation={navigation} />
   </Container>
 );
 
-CategoriesScreen.navigationOptions = {
+CategoryListScreen.navigationOptions = {
   tabBarLabel: 'Categories',
   tabBarIcon: ({ focused, tintColor }) => (
     Platform.OS === 'android' ?
@@ -20,4 +20,4 @@ CategoriesScreen.navigationOptions = {
   ),
 };
 
-export default CategoriesScreen;
+export default CategoryListScreen;

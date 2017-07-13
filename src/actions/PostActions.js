@@ -1,14 +1,21 @@
+import { extendObservable } from 'mobx';
+
 import postStore from '../stores/postStore';
 import { getPosts } from '../api';
 
 export const fetchPosts = (key = 'all', paged = true, params = {}) => {
-  const page = paged ? postStore.page[key] : 1;
-  if (paged) postStore.loading[key] = true;
-  postStore.refreshing[key] = page === 1;
-  getPosts({ page, ...params })
+  postStore.setPage(key);
+  if (paged) postStore.setLoading(key, true);
+  postStore.setRefreshing(key, postStore.page[key] === 1);
+  getPosts({ page: postStore.page[key], ...params })
     .then(data => {
-      postStore.items[key] = page === 1 ? data : [...postStore.items[key], ...data];
-      if (paged) postStore.loading[key] = false;
-      postStore.refreshing[key] = false;
+      if (postStore.items[key]) {
+        postStore.items[key] = 
+          postStore.page[key] === 1 ? data : [...postStore.items[key], ...data];
+      } else {
+        extendObservable(postStore.items, { [key]: data });
+      }
+      if (paged) postStore.setLoading(key, false);
+      postStore.setRefreshing(key, false);
     });
 };

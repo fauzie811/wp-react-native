@@ -17,7 +17,13 @@ class CategoryList extends Component {
       .filter(item => item.parent === parentId)
       .map(item => {
         return (
-          <CategoryListItem key={item.id} item={item}>
+          <CategoryListItem 
+            key={item.id} 
+            item={item}
+            onPress={() => {
+              this.props.navigation.navigate('Category', { item });
+            }}
+          >
             {this.renderChildren(item.id)}
           </CategoryListItem>
         );

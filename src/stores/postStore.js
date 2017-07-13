@@ -1,4 +1,4 @@
-import { observable } from 'mobx';
+import { observable, action, extendObservable } from 'mobx';
 
 class PostStore {
   @observable loading;
@@ -17,7 +17,31 @@ class PostStore {
   }
 
   getItemsArray(key = 'all') {
-    return this.items[key].peek();
+    return this.items[key] ? this.items[key].peek() : [];
+  }
+
+  @action setLoading(key, loading) {
+    if (!(key in this.loading)) {
+      extendObservable(this.loading, { [key]: loading });
+    } else {
+      this.loading[key] = loading;
+    }
+  }
+
+  @action setRefreshing(key, refreshing) {
+    if (!(key in this.refreshing)) {
+      extendObservable(this.refreshing, { [key]: refreshing });
+    } else {
+      this.refreshing[key] = refreshing;
+    }
+  }
+
+  @action setPage(key, page = 0) {
+    if (!(key in this.page)) {
+      extendObservable(this.page, { [key]: 1 });
+    } else {
+      this.page[key] = page > 0 ? page : this.page[key];
+    }
   }
 }
 

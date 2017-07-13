@@ -2,19 +2,19 @@ import { TabNavigator, TabBarBottom } from 'react-navigation';
 
 import config from '../config';
 import HomeScreen from '../screens/HomeScreen';
-import CategoriesScreen from '../screens/CategoriesScreen';
+import CategoryListScreen from '../screens/CategoryListScreen';
 import AuthorsScreen from '../screens/AuthorsScreen';
 import SavedScreen from '../screens/SavedScreens';
 
 const tabsWithAuthors = {
   Home: { screen: HomeScreen },
-  Categories: { screen: CategoriesScreen },
+  Categories: { screen: CategoryListScreen },
   Authors: { screen: AuthorsScreen },
   Saved: { screen: SavedScreen },
 };
 const tabsWithoutAuthors = {
   Home: { screen: HomeScreen },
-  Categories: { screen: CategoriesScreen },
+  Categories: { screen: CategoryListScreen },
   Saved: { screen: SavedScreen },
 };
 
