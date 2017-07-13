@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Dimensions, Platform } from 'react-native';
+import { View, Dimensions, Platform } from 'react-native';
 import { observer } from 'mobx-react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Swiper from 'react-native-swiper';
 
+import config from '../config';
 import { fetchPosts } from '../actions';
 import postStore from '../stores/postStore';
 import Container from '../components/common/Container';
@@ -23,13 +24,18 @@ const dotStyle = {
   marginBottom: 0,
 };
 const styles = {
+  sliderItem: {
+    flex: 1, 
+    margin: 8,
+    marginBottom: 24,
+  },
   dotStyle: {
     ...dotStyle,
-    backgroundColor: 'rgba(255,255,255,0.4)',
+    backgroundColor: 'rgba(0,0,0,0.1)',
   },
   activeDotStyle: {
     ...dotStyle,
-    backgroundColor: 'white',
+    backgroundColor: config.COLOR_PRIMARY,
   },
 };
 
@@ -64,10 +70,8 @@ class HomeScreen extends Component {
     return (
       <Swiper
         width={window.width}
-        height={window.width * (9 / 16)}
-        autoplay
+        height={(window.width * (9 / 16)) + 16}
         showsPagination
-        autoplayTimeout={5}
         paginationStyle={{ bottom: 10 }}
         dotStyle={styles.dotStyle}
         activeDotStyle={styles.activeDotStyle}
@@ -78,21 +82,25 @@ class HomeScreen extends Component {
   };
 
   renderSliderItems = () => postStore.getItemsArray('slider').map((item, index) => (
-    <PostSliderItem 
+    <View 
       key={index} 
-      item={item} 
-      onPress={() => {
-        this.props.navigation.navigate('Detail', { item });
-      }}
-      style={{ flex: 1 }}
-    /> 
+      style={styles.sliderItem}
+    >
+      <PostSliderItem 
+        item={item} 
+        onPress={() => {
+          this.props.navigation.navigate('Detail', { item });
+        }}
+        style={{ flex: 1 }}
+      /> 
+    </View>
   ));
 
   render() {
     const { navigation } = this.props;
 
     return (
-      <Container>
+      <Container style={{ backgroundColor: '#eeeeee' }}>
         <PostList navigation={navigation} ListHeaderComponent={this.renderSlider()} />
       </Container>
     );

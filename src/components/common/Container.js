@@ -2,5 +2,5 @@ import React from 'react';
 import { View } from 'react-native';
 
 export default (props) => (
-  <View {...props} style={[props.style, { flex: 1, backgroundColor: 'white' }]} />
+  <View {...props} style={[{ flex: 1, backgroundColor: 'white' }, props.style]} />
 );

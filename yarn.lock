@@ -3621,6 +3621,10 @@ react-native-cacheable-image@^1.5.1:
     react-native-responsive-image "^1.2.0"
     url-parse "^1.1.1"
 
+react-native-cardview@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/react-native-cardview/-/react-native-cardview-1.0.4.tgz#c57d64680073ae290b914409a2a90ec3a97a293d"
+
 react-native-dismiss-keyboard@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/react-native-dismiss-keyboard/-/react-native-dismiss-keyboard-1.0.0.tgz#32886242b3f2317e121f3aeb9b0a585e2b879b49"

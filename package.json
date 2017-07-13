@@ -14,6 +14,7 @@
 		"react": "16.0.0-alpha.12",
 		"react-native": "0.45.1",
 		"react-native-cacheable-image": "^1.5.1",
+		"react-native-cardview": "^1.0.4",
 		"react-native-parallax-scroll-view": "^0.19.0",
 		"react-native-render-html": "https://github.com/fauzie811/react-native-render-html",
 		"react-native-swiper": "^1.5.4",

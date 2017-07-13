@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
-import { FlatList } from 'react-native';
+import { View, FlatList } from 'react-native';
 
 import { fetchPosts } from '../actions';
 import postStore from '../stores/postStore';
 import ListItemLoading from './ListItemLoading';
 import PostListItem from './PostListItem';
-import Divider from './common/Divider';
+
+const styles = {
+  listItem: {
+    marginHorizontal: 8,
+    marginVertical: 4,
+  }
+};
 
 @observer
 class PostList extends Component {
@@ -35,12 +41,14 @@ class PostList extends Component {
 
   renderItem = ({ item }) => {
     return (
-      <PostListItem
-        item={item}
-        onPress={() => {
-          this.props.navigation.navigate('Detail', { item });
-        }}
-      />
+      <View style={styles.listItem}>
+        <PostListItem
+          item={item}
+          onPress={() => {
+            this.props.navigation.navigate('Detail', { item });
+          }}
+        />
+      </View>
     );
   }
 
@@ -51,7 +59,6 @@ class PostList extends Component {
         renderItem={this.renderItem}
         keyExtractor={item => item.id}
         ListHeaderComponent={this.props.ListHeaderComponent}
-        ItemSeparatorComponent={() => <Divider style={{ height: 1 }} />}
         refreshing={postStore.refreshing[this.key]}
         onRefresh={this.handleRefresh}
         onEndReached={this.handleLoadMore}

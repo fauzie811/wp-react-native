@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { View, Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -22,20 +22,24 @@ const styles = {
   }
 };
 
-class CategoryListItem extends Component {
+class CategoryListItem extends PureComponent {
   state = { expanded: false };
 
   renderDropdown = () => (
     <Touchable onPress={() => this.setState({ expanded: !this.state.expanded })}>
       <View 
         style={{ 
-          flex: 1, 
+          flex: Platform.OS === 'ios' ? 1 : 0,
           paddingHorizontal: 12, 
           alignItems: 'center', 
           justifyContent: 'center' 
         }}
       >
-        <Icon size={18} color="rgba(0,0,0,0.54)" name={this.state.expanded ? 'chevron-up' : 'chevron-down'} />
+        <Icon 
+          size={18} 
+          color="rgba(0,0,0,0.54)" 
+          name={this.state.expanded ? 'chevron-up' : 'chevron-down'} 
+        />
       </View>
     </Touchable>
   )
