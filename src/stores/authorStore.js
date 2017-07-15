@@ -1,12 +1,15 @@
-import { observable, computed } from 'mobx';
+import { observable, computed, action } from 'mobx';
 
 class AuthorStore {
-  @observable loading;
-  @observable items;
+  @observable loading = false;
+  @observable items = observable.array();
 
-  constructor() {
-    this.loading = true;
-    this.items = [];
+  @action setLoading(loading) {
+    this.loading = loading;
+  }
+
+  @action updateItems(items) {
+    this.items = items;
   }
 
   @computed get itemsArray() {

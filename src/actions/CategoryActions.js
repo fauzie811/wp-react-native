@@ -2,10 +2,10 @@ import categoryStore from '../stores/categoryStore';
 import { getCategories } from '../api';
 
 export const fetchCategories = () => {
-  categoryStore.loading = true;
+  categoryStore.setLoading(true);
   getCategories()
     .then(data => {
-      categoryStore.items = data;
-      categoryStore.loading = false;
+      categoryStore.updateItems(data);
+      categoryStore.setLoading(false);
     });
 };

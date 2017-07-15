@@ -1,9 +1,14 @@
 import React from 'react';
-import { View, Platform } from 'react-native';
+import { Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
+import Container from '../components/common/Container';
+import SavedPostList from '../components/SavedPostList';
+
 const SavedScreen = ({ navigation }) => (
-  <View />
+  <Container style={{ backgroundColor: '#eeeeee' }}>
+    <SavedPostList navigation={navigation} />
+  </Container>
 );
 
 SavedScreen.navigationOptions = {

@@ -2,10 +2,10 @@ import authorStore from '../stores/authorStore';
 import { getAuthors } from '../api';
 
 export const fetchAuthors = () => {
-  authorStore.loading = true;
+  authorStore.setLoading(true);
   getAuthors()
     .then(data => {
-      authorStore.items = data;
-      authorStore.loading = false;
+      authorStore.updateItems(data);
+      authorStore.setLoading(false);
     });
 };

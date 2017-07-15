@@ -1,12 +1,15 @@
-import { observable } from 'mobx';
+import { observable, action } from 'mobx';
 
 class CategoryStore {
-  @observable loading;
-  @observable items;
+  @observable loading = true;
+  @observable items = observable.array();
 
-  constructor() {
-    this.loading = true;
-    this.items = [];
+  @action setLoading(loading) {
+    this.loading = loading;
+  }
+
+  @action updateItems(items) {
+    this.items = items;
   }
 }
 

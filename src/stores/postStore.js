@@ -1,46 +1,33 @@
-import { observable, action, extendObservable } from 'mobx';
+import { observable, action } from 'mobx';
 
 class PostStore {
-  @observable loading;
-  @observable refreshing;
-  @observable page;
-  @observable items;
-
-  constructor() {
-    this.loading = { all: true };
-    this.refreshing = { all: true, slider: true };
-    this.page = { all: 1 };
-    this.items = {
-      all: [],
-      slider: [],
-    };
-  }
+  @observable loading = observable.map();
+  @observable refreshing = observable.map();
+  @observable page = observable.map();
+  @observable items = observable.map();
 
   getItemsArray(key = 'all') {
-    return this.items[key] ? this.items[key].peek() : [];
+    return this.items.has(key) ? this.items.get(key).peek() : [];
   }
 
   @action setLoading(key, loading) {
-    if (!(key in this.loading)) {
-      extendObservable(this.loading, { [key]: loading });
-    } else {
-      this.loading[key] = loading;
-    }
+    this.loading.set(key, loading);
   }
 
   @action setRefreshing(key, refreshing) {
-    if (!(key in this.refreshing)) {
-      extendObservable(this.refreshing, { [key]: refreshing });
-    } else {
-      this.refreshing[key] = refreshing;
-    }
+    this.refreshing.set(key, refreshing);
   }
 
   @action setPage(key, page = 0) {
-    if (!(key in this.page)) {
-      extendObservable(this.page, { [key]: 1 });
+    this.page.set(key, this.page.has(key) && page > 0 ? page : 1);
+  }
+
+  @action updateItems(key, items) {
+    const add = this.page.get(key) > 1;
+    if (this.items.has(key)) {
+      this.items.set(key, add ? [...this.items.get(key), ...items] : items);
     } else {
-      this.page[key] = page > 0 ? page : this.page[key];
+      this.items.set(key, items);
     }
   }
 }

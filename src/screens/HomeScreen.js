@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { View, Dimensions, Platform } from 'react-native';
-import { observer } from 'mobx-react';
+import { observer, inject } from 'mobx-react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Swiper from 'react-native-swiper';
 
 import config from '../config';
 import { fetchPosts } from '../actions';
-import postStore from '../stores/postStore';
 import Container from '../components/common/Container';
 import PostList from '../components/PostList';
 import PostSliderItem from '../components/PostSliderItem';
@@ -39,6 +38,7 @@ const styles = {
   },
 };
 
+@inject('postStore')
 @observer
 class HomeScreen extends Component {
   static navigationOptions = {
@@ -65,7 +65,7 @@ class HomeScreen extends Component {
   }
 
   renderSlider = () => {
-    if (postStore.items.slider.length === 0) return;
+    if (this.props.postStore.getItemsArray('slider').length === 0) return;
 
     return (
       <Swiper
@@ -81,7 +81,7 @@ class HomeScreen extends Component {
     );
   };
 
-  renderSliderItems = () => postStore.getItemsArray('slider').map((item, index) => (
+  renderSliderItems = () => this.props.postStore.getItemsArray('slider').map((item, index) => (
     <View 
       key={index} 
       style={styles.sliderItem}

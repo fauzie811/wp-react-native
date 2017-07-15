@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { observer } from 'mobx-react';
+import { observer, inject } from 'mobx-react';
 import { ScrollView, RefreshControl } from 'react-native';
 
-import categoryStore from '../stores/categoryStore';
 import { fetchCategories } from '../actions';
 import CategoryListItem from './CategoryListItem';
 
+@inject('categoryStore')
 @observer
 class CategoryList extends Component {
   componentWillMount() {
@@ -13,7 +13,7 @@ class CategoryList extends Component {
   }
 
   renderChildren = (parentId) => {
-    return categoryStore.items
+    return this.props.categoryStore.items
       .filter(item => item.parent === parentId)
       .map(item => {
         return (
@@ -39,7 +39,7 @@ class CategoryList extends Component {
       <ScrollView
         refreshControl={
           <RefreshControl
-            refreshing={categoryStore.loading}
+            refreshing={this.props.categoryStore.loading}
             onRefresh={() => fetchCategories()}
           />
         }
