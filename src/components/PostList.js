@@ -34,7 +34,7 @@ class PostList extends Component {
 
     if (postStore.loading.get(this.key)) return;
 
-    postStore.setPage(this.key, postStore.page.get(this.key) + 1);
+    postStore.nextPage(this.key);
     this._fetchPosts();
   }
 

@@ -18,8 +18,12 @@ class PostStore {
     this.refreshing.set(key, refreshing);
   }
 
-  @action setPage(key, page = 0) {
-    this.page.set(key, this.page.has(key) && page > 0 ? page : 1);
+  @action setPage(key, page) {
+    this.page.set(key, page);
+  }
+
+  @action nextPage(key) {
+    this.page.set(key, this.page.get(key) + 1);
   }
 
   @action updateItems(key, items) {

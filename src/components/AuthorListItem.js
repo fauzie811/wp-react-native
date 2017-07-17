@@ -12,7 +12,6 @@ const styles = {
     paddingHorizontal: 16,
   },
   avatar: {
-    backgroundColor: '#e5e5e5',
     borderRadius: 20,
     height: 40,
     width: 40,

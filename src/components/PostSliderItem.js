@@ -1,7 +1,5 @@
 import React, { PureComponent } from 'react';
-import { View } from 'react-native';
-import Image from 'react-native-cacheable-image';
-import CardView from 'react-native-cardview';
+import { View, Image, StyleSheet } from 'react-native';
 import Entities from 'html-entities';
 import moment from 'moment';
 
@@ -12,10 +10,13 @@ const entities = new Entities.AllHtmlEntities();
 
 const styles = {
   container: {
-    flex: 1,
+    backgroundColor: 'white',
+    borderColor: '#cccccc',
+    borderWidth: StyleSheet.hairlineWidth,
+    borderRadius: 5,
+    overflow: 'hidden',
   },
   thumbnail: {
-    borderRadius: 4,
     width: '100%',
     height: '100%',
   },
@@ -40,9 +41,13 @@ export default class PostSliderItem extends PureComponent {
     if (item.featured_media === 0) return null;
 
     let image = item.featured_media_url;
-    if (!image) image = item._embedded['wp:featuredmedia'][0].source_url;
+    const featuredMedia = item._embedded['wp:featuredmedia'][0];
+    if (!image && featuredMedia.media_details.sizes.medium) {
+      image = featuredMedia.media_details.sizes.medium.source_url;
+    }
+    if (!image) image = featuredMedia.source_url;
     if (!image) {
-      image = item._embedded['wp:featuredmedia'][0].media_details.sizes.full.source_url;
+      image = featuredMedia.media_details.sizes.full.source_url;
     }
 
     return image;
@@ -52,13 +57,8 @@ export default class PostSliderItem extends PureComponent {
     const { item, ...props } = this.props;
 
     return (
-      <CardView
-        cardElevation={2}
-        cardMaxElevation={2}
-        cornerRadius={4}
-        style={styles.container}
-      >
-        <Touchable {...props}>
+      <Touchable {...props} style={styles.container}>
+        <View>
           <Image 
             style={styles.thumbnail}
             source={{ uri: this.getThumbnailUri() }}
@@ -74,8 +74,8 @@ export default class PostSliderItem extends PureComponent {
               <CaptionText inverted secondary>{moment(item.date).fromNow()}</CaptionText>
             </View>
           </Image>
-        </Touchable>
-      </CardView>
+        </View>
+      </Touchable>
     );
   }
 }

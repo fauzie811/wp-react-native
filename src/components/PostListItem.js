@@ -1,7 +1,5 @@
 import React, { PureComponent } from 'react';
-import { View } from 'react-native';
-import Image from 'react-native-cacheable-image';
-import CardView from 'react-native-cardview';
+import { View, Image, StyleSheet } from 'react-native';
 import Entities from 'html-entities';
 import moment from 'moment';
 
@@ -12,11 +10,16 @@ const entities = new Entities.AllHtmlEntities();
 
 const styles = {
   container: {
-    backgroundColor: 'white',
-    borderRadius: 2,
-    flexDirection: 'row',
+    borderColor: '#cccccc',
+    borderWidth: StyleSheet.hairlineWidth,
+    borderRadius: 5,
     minHeight: 80,
     overflow: 'hidden',
+  },
+  innerContainer: {
+    flex: 1,
+    backgroundColor: 'white',
+    flexDirection: 'row',
   },
   thumbnailWrap: {
     backgroundColor: '#e5e5e5',
@@ -46,9 +49,13 @@ export default class PostListItem extends PureComponent {
     if (item.featured_media === 0) return null;
 
     let image = item.featured_media_url;
-    if (!image) image = item._embedded['wp:featuredmedia'][0].source_url;
+    const featuredMedia = item._embedded['wp:featuredmedia'][0];
+    if (!image && featuredMedia.media_details.sizes.medium) {
+      image = featuredMedia.media_details.sizes.medium.source_url;
+    }
+    if (!image) image = featuredMedia.source_url;
     if (!image) {
-      image = item._embedded['wp:featuredmedia'][0].media_details.sizes.full.source_url;
+      image = featuredMedia.media_details.sizes.full.source_url;
     }
 
     return (
@@ -63,31 +70,25 @@ export default class PostListItem extends PureComponent {
     const { item, ...props } = this.props;
 
     return (
-      <CardView
-        cardElevation={1}
-        cardMaxElevation={1}
-        cornerRadius={2}
-      >
-        <Touchable {...props}>
-          <View style={styles.container}>
-            <View style={styles.thumbnailWrap}>
-              {this.renderThumbnail()}
-            </View>
-            <View style={styles.details}>
-              <BodyTextMedium 
-                style={styles.title} 
-                numberOfLines={2}
-              >
-                {entities.decode(item.title.rendered)}
-              </BodyTextMedium>
-              <View style={styles.metaWrap}>
-                <CaptionText secondary>{item._embedded['wp:term'][0][0].name}</CaptionText>
-                <CaptionText disabled>{moment(item.date).fromNow()}</CaptionText>
-              </View>
+      <Touchable {...props} style={styles.container}>
+        <View style={styles.innerContainer}>
+          <View style={styles.thumbnailWrap}>
+            {this.renderThumbnail()}
+          </View>
+          <View style={styles.details}>
+            <BodyTextMedium 
+              style={styles.title} 
+              numberOfLines={2}
+            >
+              {entities.decode(item.title.rendered)}
+            </BodyTextMedium>
+            <View style={styles.metaWrap}>
+              <CaptionText secondary>{item._embedded['wp:term'][0][0].name}</CaptionText>
+              <CaptionText disabled>{moment(item.date).fromNow()}</CaptionText>
             </View>
           </View>
-        </Touchable>
-      </CardView>
+        </View>
+      </Touchable>
     );
   }
 }
