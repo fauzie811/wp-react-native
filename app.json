@@ -1,4 +1,31 @@
 {
-  "name": "WP_ReactNative",
-  "displayName": "WP_ReactNative"
+  "expo": {
+    "name": "WP-ReactNative",
+    "description": "React Native app consuming WP REST API v2",
+    "slug": "wp-react-native",
+    "privacy": "public",
+    "sdkVersion": "25.0.0",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "primaryColor": "#34495e",
+    "icon": "./assets/icons/app-icon.png",
+    "notification": {
+      "icon": "./assets/icons/notification-icon.png",
+      "color": "#000000"
+    },
+    "loading": {
+      "icon": "./assets/icons/loading-icon.png",
+      "hideExponentText": false
+    },
+    "packagerOpts": {
+      "assetExts": ["ttf"]
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "id.fauzie.wpreactnative"
+    },
+    "android": {
+      "package": "id.fauzie.wpreactnative"
+    }
+  }
 }
